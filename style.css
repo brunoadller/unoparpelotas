@@ -933,7 +933,7 @@
         }
       }
       
-      @media (max-width: 340px) {
+      @media (max-width: 360px) {
         .diffs {
           grid-template-columns: 4fr;
         }
