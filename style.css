@@ -845,7 +845,30 @@
         z-index: 2;
         padding: 16px 24px;
       }
+     
+      @media (max-width: 320px) {
+    .offer .countdown {
+        gap: 8px;
+    }
 
+    .offer .countdown b {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        min-width: 52px;
+        height: 46px;
+
+        padding: 0;
+        font-size: 26px;
+    }
+
+    .offer .countdown i {
+        font-size: 9px;
+        letter-spacing: .15em;
+    }
+}
+       
       /* WHY / DIFFERENTIALS */
       .why {
         background: var(--ink);
@@ -909,6 +932,20 @@
           border-bottom: 1px solid rgba(241, 235, 221, 0.18);
         }
       }
+      
+      @media (max-width: 320px) {
+        .diffs {
+          grid-template-columns: 4fr;
+        }
+        .diff:nth-child(2) {
+          border-right: none;
+        }
+        .diff:nth-child(1),
+        .diff:nth-child(2) {
+          border-bottom: 1px solid rgba(241, 235, 221, 0.18);
+        }
+      }
+
 
       /* NUMBERS */
       .nums {
@@ -946,6 +983,11 @@
           grid-template-columns: 1fr 1fr;
         }
       }
+       @media (max-width: 425px) {
+        .nums{
+          grid-template-columns: 4fr;
+        }
+       }
 
       /* CURSOS LIST */
       .cursos {
