@@ -551,42 +551,47 @@
       }
 
       /* MARQUEE */
-      .marq {
-        border-top: 1px solid var(--ink);
-        border-bottom: 1px solid var(--ink);
+    .marq {
         background: var(--ink);
         color: var(--paper);
         overflow: hidden;
-      }
-      .marq-track {
+    }
+
+    .marq-track {
         display: flex;
-        gap: 48px;
-        padding: 18px 0;
+        width: max-content;
+        padding: 24px 0;
         white-space: nowrap;
-        animation: marq 40s linear infinite;
-        font-family: "Fraunces";
-        font-size: 28px;
-        letter-spacing: -0.02em;
-      }
-      .marq-track span {
-        display: inline-flex;
+        animation: marq 25s linear infinite;
+    }
+
+    .marq-track span {
+        display: flex;
         align-items: center;
-        gap: 48px;
-      }
-      .marq-track em {
+        gap: 80px;              /* Espaço entre os cursos */
+        padding-right: 80px;    /* Espaço entre as duas cópias */
+    }
+
+    .marq-track span,
+    .marq-track em {
+        font-family: "Fraunces", serif;
+        font-size: 30px;        /* Aumente para 48px ou 52px se desejar */
+        line-height: 1;
+    }
+
+    .marq-track em {
         font-style: italic;
         color: var(--sun);
-      }
-      .marq-track .sep {
-        color: var(--accent);
-        font-family: "JetBrains Mono";
-        font-size: 16px;
-      }
-      @keyframes marq {
-        to {
-          transform: translateX(-50%);
+    }
+
+    @keyframes marq {
+        from {
+            transform: translateX(0);
         }
-      }
+        to {
+            transform: translateX(-50%);
+        }
+    }
 
       /* SECTIONS */
       section {
