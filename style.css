@@ -752,6 +752,22 @@
           grid-template-columns: 1fr;
         }
       }
+      @media(max-width: 375px){
+        .mode h3{
+          font-size: 30px;
+        }
+        .mode h3 em {
+          font-size: 38px;
+        }
+      }
+      @media(max-width: 320px){
+        .mode h3{
+          font-size: 24px;
+        }
+        .mode h3 em {
+          font-size: 30px;
+        }
+      }
 
       /* OFFER STRIP */
       .offer {
