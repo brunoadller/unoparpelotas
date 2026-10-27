@@ -1,0 +1,96 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #00205b;
+  --color-ink-2: #0e2c6a;
+  --color-accent: #e30613;
+  --color-accent-2: #b00410;
+  --color-sun: #ffb800;
+  --color-plum: #001842;
+  --color-line: rgba(0, 32, 91, 0.14);
+  --color-paper: #ffffff;
+  --color-paper-2: #f4f6fb;
+  --font-display: "Fraunces", serif;
+  --font-body: "Instrument Sans", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --animate-marquee: marquee 120s linear infinite;
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+
+    to {
+      transform: translateX(-50%);
+    }
+  }
+}
+
+/*
+  Aliases sem o prefixo "--color-": vários componentes usam var(--ink),
+  var(--paper-2), var(--accent)... e o Tailwind v4 só gera "--color-*".
+  Sem isso essas cores ficavam indefinidas (bordas e textos sumindo).
+*/
+:root {
+  --ink: var(--color-ink);
+  --ink-2: var(--color-ink-2);
+  --accent: var(--color-accent);
+  --accent-2: var(--color-accent-2);
+  --sun: var(--color-sun);
+  --plum: var(--color-plum);
+  --line: var(--color-line);
+  --paper: var(--color-paper);
+  --paper-2: var(--color-paper-2);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 88px; /* compensa o menu fixo ao clicar nos links */
+    -webkit-text-size-adjust: 100%;
+  }
+
+  html,
+  body {
+    @apply overflow-x-hidden bg-white text-[#00205B] antialiased;
+    font-family: "Instrument Sans", system-ui, sans-serif;
+  }
+
+  a {
+    @apply text-inherit no-underline;
+  }
+
+  img {
+    @apply block max-w-full;
+  }
+
+  ::selection {
+    background: var(--color-accent);
+    color: var(--color-paper);
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 80;
+    opacity: 0.05;
+    background-image: radial-gradient(
+      circle at 1px 1px,
+      var(--color-ink) 1px,
+      transparent 0
+    );
+    background-size: 24px 24px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .animate-marquee,
+  .animate-spin {
+    animation: none !important;
+  }
+}
