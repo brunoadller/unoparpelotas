@@ -10,7 +10,7 @@ export const modalidades: Modalidade[] = [
       "Aulas ao vivo, gravadas e material completo no app. Estude quando e onde quiser, com prova online.",
     detalhes: [
       { label: "Encontros", valor: "EAD" },
-      { label: "Provas", valor: "Online" },
+      { label: "Provas", valor: "Presenciais" },
       { label: "Matrícula", valor: "Grátis" },
       { label: "1º pagamento", valor: "Próximo mês" },
     ],
