@@ -38,7 +38,7 @@ const Hero = () => {
       </h1>
 
       <p className="mb-7 max-w-[520px] text-[19px] leading-[1.5] text-ink-2">
-        Graduação 100% online, semipresencial e pós no polo Unopar Anhanguera
+        Graduação 100% online, semipresencial e pós no polo Unopar
         de Pelotas. Aulas ao vivo, tutoria dedicada e diploma reconhecido pelo
         MEC — matrícula grátis e 1º pagamento só no próximo mês.
       </p>

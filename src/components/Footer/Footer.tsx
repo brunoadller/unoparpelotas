@@ -56,7 +56,7 @@ const Footer = () => {
             className="mb-[18px] block h-[72px] w-auto"
           />
           <h5 className="mb-3.5 font-display text-[clamp(32px,9vw,44px)] leading-[0.95] tracking-[-0.03em]">
-            Unopar Anhanguera
+            Unopar
             <br />
             <em className="italic text-plum">Pelotas</em>.
           </h5>
@@ -128,7 +128,7 @@ const Footer = () => {
 
       <div className="mx-auto mt-10 flex max-w-[1280px] flex-wrap justify-between gap-4 border-t border-line pt-6 font-mono text-[11px] uppercase leading-relaxed tracking-[0.16em] opacity-60">
         <span>
-          © {new Date().getFullYear()} · Unopar Anhanguera · Polo Pelotas ·
+          © {new Date().getFullYear()} · Unopar · Polo Pelotas ·
           Ingresso {INGRESSO}
         </span>
         <span>

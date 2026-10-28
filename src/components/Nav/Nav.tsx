@@ -9,7 +9,7 @@ const Nav = () => {
   {/* Logo */}
   <a
     href="#"
-    aria-label="Unopar Anhanguera Pelotas"
+    aria-label="Unopar Pelotas"
     className="flex items-center gap-3"
   >
     <img

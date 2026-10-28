@@ -3,6 +3,8 @@ import type { Curso } from "../../types";
 
 type CourseCardProps = {
   curso: Curso;
+  /** Abre o modal com o resumo do guia de percurso do curso */
+  onAbrir: (curso: Curso) => void;
 };
 
 const rotuloModalidade = {
@@ -10,7 +12,7 @@ const rotuloModalidade = {
   semi: "Semipresencial",
 } as const;
 
-const CourseCard = ({ curso }: CourseCardProps) => {
+const CourseCard = ({ curso, onAbrir }: CourseCardProps) => {
   // Variáveis CSS usadas pelas camadas de fundo (cor da marca + ícone do curso)
   const vars = {
     "--cor": curso.cor,
@@ -18,12 +20,13 @@ const CourseCard = ({ curso }: CourseCardProps) => {
   } as CSSProperties;
 
   return (
-    <a
-      href={curso.link}
-      target="_blank"
-      rel="noopener noreferrer"
+    <button
+      type="button"
+      onClick={() => onAbrir(curso)}
+      aria-haspopup="dialog"
+      aria-label={`Ver detalhes do curso de ${curso.titulo}`}
       style={vars}
-      className="group relative isolate flex min-h-[150px] flex-col justify-between gap-6 overflow-hidden border-r border-b border-[var(--ink)] bg-[var(--paper-2)] p-5 transition-colors duration-300 hover:bg-[var(--ink)] hover:text-[var(--paper)] sm:min-h-[170px] sm:p-[22px]"
+      className="group relative isolate flex min-h-[150px] w-full cursor-pointer flex-col justify-between gap-6 overflow-hidden text-left border-r border-b border-[var(--ink)] bg-[var(--paper-2)] p-5 transition-colors duration-300 hover:bg-[var(--ink)] hover:text-[var(--paper)] sm:min-h-[170px] sm:p-[22px]"
     >
       {/* Brilho suave com a cor do curso */}
       <span
@@ -44,12 +47,15 @@ const CourseCard = ({ curso }: CourseCardProps) => {
       />
 
       <div className="flex items-start justify-between gap-3">
-        <h3 className="max-w-[82%] font-[Fraunces] text-[20px] font-normal leading-[1.08] tracking-[-0.02em] sm:text-[22px]">
+        <span className="block max-w-[82%] font-[Fraunces] text-[20px] font-normal leading-[1.08] tracking-[-0.02em] sm:text-[22px]">
           {curso.titulo}
-        </h3>
+        </span>
 
-        <span className="inline-block font-[Fraunces] text-[22px] transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-[var(--accent)]">
-          ↗
+        <span
+          aria-hidden="true"
+          className="inline-block font-[Fraunces] text-[26px] leading-none transition-transform duration-300 group-hover:rotate-90 group-hover:text-[var(--accent)]"
+        >
+          +
         </span>
       </div>
 
@@ -62,7 +68,7 @@ const CourseCard = ({ curso }: CourseCardProps) => {
           {curso.duracao}
         </span>
       </div>
-    </a>
+    </button>
   );
 };
 

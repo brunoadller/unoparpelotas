@@ -1,9 +1,12 @@
-import { useMemo, useState } from "react";
+import { lazy, Suspense, useMemo, useState } from "react";
 import { CiSearch } from "react-icons/ci";
 import { cursos } from "../../data/cursos";
-import type { ModalidadeCurso } from "../../types";
+import type { Curso, ModalidadeCurso } from "../../types";
 import CourseCard from "../CourseCard/CourseCard";
 import { VOCACIONAL_URL } from "../../data/links";
+
+// O modal e os dados dos guias só são baixados quando alguém abre um curso
+const CursoModal = lazy(() => import("../CursoModal/CursoModal"));
 
 type Filtro = "todos" | ModalidadeCurso;
 
@@ -24,6 +27,7 @@ const filtros: { valor: Filtro; rotulo: string }[] = [
 const Cursos = () => {
   const [modalidade, setModalidade] = useState<Filtro>("todos");
   const [busca, setBusca] = useState("");
+  const [cursoAberto, setCursoAberto] = useState<Curso | null>(null);
 
   const cursosFiltrados = useMemo(() => {
     const termo = normalizar(busca);
@@ -55,8 +59,8 @@ const Cursos = () => {
 
           <div className="max-w-md">
             <p className="text-base leading-7 text-black/70 sm:text-lg sm:leading-8">
-              Filtre por modalidade ou busque pelo nome. Clique no curso e fale
-              agora com um consultor pelo WhatsApp.
+              Filtre por modalidade ou busque pelo nome. Clique no curso para ver
+              o resumo do guia e, se gostar, fale com um consultor pelo WhatsApp.
             </p>
             <a
               href={VOCACIONAL_URL}
@@ -112,7 +116,7 @@ const Cursos = () => {
         {cursosFiltrados.length > 0 ? (
           <div className="grid grid-cols-1 border-l border-t border-[var(--ink)] md:grid-cols-2 xl:grid-cols-3">
             {cursosFiltrados.map((curso) => (
-              <CourseCard key={curso.id} curso={curso} />
+              <CourseCard key={curso.id} curso={curso} onAbrir={setCursoAberto} />
             ))}
           </div>
         ) : (
@@ -134,6 +138,16 @@ const Cursos = () => {
           </div>
         )}
       </div>
+
+      {cursoAberto && (
+        <Suspense fallback={null}>
+          <CursoModal
+            key={cursoAberto.id}
+            curso={cursoAberto}
+            onClose={() => setCursoAberto(null)}
+          />
+        </Suspense>
+      )}
     </section>
   );
 };

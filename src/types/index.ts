@@ -61,3 +61,31 @@ export interface Diff {
   titulo: string;
   descricao: string;
 }
+
+/** Um semestre (etapa) da matriz curricular do guia de percurso */
+export interface SemestreGuia {
+  etapa: number;
+  disciplinas: string[];
+}
+
+/** Resumo do Guia de Percurso 2027 de um curso (usado no modal do curso) */
+export interface GuiaCurso {
+  /** Texto curto de apresentação do curso */
+  resumo: string;
+  /** Áreas / lugares de atuação (tags curtas) */
+  atuacao: string[];
+  semestres: SemestreGuia[];
+  totalSemestres: number;
+  totalDisciplinas: number;
+  /** Horas de projetos de extensão (0 = não consta) */
+  extensaoHoras: number;
+  /** Horas de estágio supervisionado obrigatório (0 = não consta) */
+  estagioHoras: number;
+  /** Horas de atividades complementares (ACO) */
+  acoHoras: number;
+  tcc: boolean;
+  /** O guia prevê encontros síncronos (ao vivo) mediados */
+  sincrono: boolean;
+  /** O guia cita a opção EaD+ (1 encontro presencial por semana no polo) */
+  eadPlus: boolean;
+}
